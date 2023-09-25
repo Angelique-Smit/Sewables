@@ -1,11 +1,17 @@
-@extends('layout')
-
-@section('nav')
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>@yield('title')</title>
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/home.css') }}">
+</head>
+<body>
     <nav>
         <section id="nav_container">
             <div class="link"> <img src="" alt="Sewables logo" id="sewables_logo_nav"> </div>
             <div class="link"> <a class="link" href="./resources/views/homepage.blade.php"> Home </a> </div>
-            <div class="link"> <a class="link" href="./resources/views/projects.blade.php"> Projects </a> </div>
+            <div class="link"> <a class="link" href="../projects.blade.php"> Projects </a> </div>
 
             <div class="dropdown">
                 <button class="dropbtn"> <img src="{{ asset('pic/hamburger-menu.svg') }}" alt="Hamburger menu picture" id="hamburger_icon"></button>
@@ -15,9 +21,7 @@
             </div>
         </section>
     </nav>
-@endsection
 
-@section('header')
     <header>
         <section class="slideshow_container">
             <div id="slideshow">
@@ -34,9 +38,10 @@
             </div>
         </section>
     </header>
-@endsection
+    <main>
+        @yield('content')
+    </main>
 
-@section('footer')
     <footer>
         <section class="container_footer">
             <div class="flex_box"> <img src="" alt="Sewables logo" id="sewables_logo-footer"> </div>
@@ -50,4 +55,13 @@
             </div>
         </section>
     </footer>
-@endsection
+
+
+</body>
+</html>
+
+
+
+
+
+
