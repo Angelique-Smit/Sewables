@@ -10,13 +10,13 @@
     <nav>
         <section id="nav_container">
             <div class="link"> <img src="" alt="Sewables logo" id="sewables_logo_nav"> </div>
-            <div class="link"> <a class="link" href="./resources/views/homepage.blade.php"> Home </a> </div>
-            <div class="link"> <a class="link" href="../projects.blade.php"> Projects </a> </div>
+            <div class="link"> <a class="link" href="./"> Home </a> </div>
+            <div class="link"> <a class="link" href="./projects"> Projects </a> </div>
 
             <div class="dropdown">
                 <button class="dropbtn"> <img src="{{ asset('pic/hamburger-menu.svg') }}" alt="Hamburger menu picture" id="hamburger_icon"></button>
                 <div class="dropdown-content">
-                    <a href="#">Log in</a>
+                    <a href="../home">Log in</a>
                 </div>
             </div>
         </section>
@@ -38,6 +38,7 @@
             </div>
         </section>
     </header>
+
     <main>
         @yield('content')
     </main>

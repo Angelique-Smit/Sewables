@@ -2,6 +2,8 @@
 
 @section('content')
     <main>
-        <button> <a href="/upload"> Make a project </a> </button>
+        <form>
+
+        </form>
     </main>
 @endsection
