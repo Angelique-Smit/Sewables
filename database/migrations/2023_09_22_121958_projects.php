@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('projects', function (Blueprint $table) {
             $table->id();
             $table->foreign('user_id')->references('id')->on('users');
+            $table->text('title');
             $table->string('picture_url');
             $table->text('description');
             $table->text('explanation');
