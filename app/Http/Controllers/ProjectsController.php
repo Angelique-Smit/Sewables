@@ -2,13 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\project;
+use App\Models\project; // Preserve the capitalization of project
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Response;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 use Illuminate\Support\Facades\Auth;
-
 
 class ProjectsController extends Controller
 {
@@ -16,61 +14,55 @@ class ProjectsController extends Controller
     {
         return view('projects');
     }
-/**
- * Show the form for creating a new resource.
- */
-public function create(Request $request): View {
-    return view('projects.create');
-}
 
-/**
- * Store a newly created resource in storage.
- */
-public function store(Request $request)
-{
-    $project = new Project;
-    $project->user_id = $request->input('user_id');
-    $project->title = $request->input('title');
-    $project->user_id = $request->input('picture_url');
-    $project->user_id = $request->input('description');
-    $project->user_id = $request->input('explanation');
-    $project->save();
+    public function create(): View
+    {
+        return view('projects.create');
+    }
 
-    return redirect()->back()->with([
-    'message' =>'Project Submitted',
-    'status' => 'Succes'
-    ]);
-}
+    public function store(Request $request): RedirectResponse
+    {
+        // Check if the user is authenticated before accessing their ID
+        if (Auth::check()) {
+            $user_id = Auth::user()->id; // Use Auth::user() to access the authenticated user
+            $project = new project(); // Preserve the capitalization
+            $project->users_id = $user_id;
+            $project->title = $request->input('title');
+            $project->picture_url = $request->input('picture_url');
+            $project->description = $request->input('description');
+            $project->explanation = $request->input('explanation');
+            $project->save();
 
-/**
- * Display the specified resource.
- */
-public function show(string $id)
-{
-    //
-}
+            return redirect()->back()->with([
+                'message' => 'Project Submitted',
+                'status' => 'Success',
+            ]);
+        } else {
+            // Handle the case where the user is not authenticated
+            return redirect()->back()->with([
+                'message' => 'User not authenticated',
+                'status' => 'Error',
+            ]);
+        }
+    }
 
-/**
- * Show the form for editing the specified resource.
- */
-public function edit(string $id)
-{
-    //
-}
+    public function show(string $id)
+    {
+        // You can implement the code to show a project by its ID here
+    }
 
-/**
- * Update the specified resource in storage.
- */
-public function update(Request $request, string $id)
-{
-    //
-}
+    public function edit(string $id)
+    {
+        // You can implement the code to edit a project here
+    }
 
-/**
- * Remove the specified resource from storage.
- */
-public function destroy(string $id)
-{
-    //
-}
+    public function update(Request $request, string $id)
+    {
+        // You can implement the code to update a project here
+    }
+
+    public function destroy(string $id)
+    {
+        // You can implement the code to delete a project here
+    }
 }

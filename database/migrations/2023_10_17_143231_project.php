@@ -11,13 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('projects', function (Blueprint $table) {
+        Schema::create('project', function (Blueprint $table) {
             $table->id();
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreignId('users_id')->constrained();
             $table->text('title');
-            $table->string('picture_url');
-            $table->text('description');
-            $table->text('explanation');
+            $table->string('picture_url')->default('0');
+            $table->text('description')->default('This project does not have an included description');
+            $table->text('explanation')->default('This project does not have an included explanation');
+            $table->timestamps();
         });
     }
 

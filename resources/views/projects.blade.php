@@ -2,7 +2,7 @@
 
 @section('content')
     <main>
-        <form method="post" action="{{ route('ProjectsController.create') }}" autocomplete="on">
+        <form method="post" action="{{ route('ProjectsController.store') }}" autocomplete="on">
             @csrf
             <label class="form_label" for="title"> Project title </label> <br>
             <input type="text" id="title" name="title"> <br>
@@ -20,6 +20,5 @@
         </form>
     </main>
 @endsection
-?>
 
 

@@ -19,9 +19,11 @@ Route::get('/projects', [App\Http\Controllers\ProjectsController::class, 'index'
 
 
 
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/projects.create', [App\Http\Controllers\ProjectsController::class, 'create'])->name('projects.create');
-Route::post('/projects.store', [App\Http\Controllers\ProjectsController::class, 'store'])->name('projects.store');
+Route::get('/ProjectsController.create', [App\Http\Controllers\ProjectsController::class, 'create'])->name('ProjectsController.create');
+Route::post('/ProjectsController.store', [App\Http\Controllers\ProjectsController::class, 'store'])->name('ProjectsController.store');
+
 
