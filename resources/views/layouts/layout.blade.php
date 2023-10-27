@@ -40,12 +40,6 @@
     </header>
 
     <main>
-        <section>
-            @if (Session::has('message'))
-                <div>{{ Session::get('message')  }}</div>
-            @endif
-        </section>
-
         @yield('content')
     </main>
 

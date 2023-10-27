@@ -12,8 +12,8 @@ class Routing extends Controller
         return view('homepage');
     }
 
-    public function error(): View
+    public function nope(): RedirectResponse
     {
-        return view('error');
+        return redirect('nope');
     }
 }

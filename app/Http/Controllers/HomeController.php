@@ -38,25 +38,10 @@ class HomeController extends Controller
         $user = User::find($user_id);
 
         if (Auth::check() && $user->admin) {
-            $user = User::all();
-            return view('admin', ['User' => $user]);
+            return view('admin');
         } else {
-            return view('error');
+            return view('nope');
         }
-    }
-
-    public function setAdmin($id): RedirectResponse
-    {
-        if (Auth::check()) {
-            $user = User::find($id);
-            $admin = $user->admin;
-            $user->admin = !$admin;
-            $user->update();
-
-            return redirect('admin');
-        }
-
-        return redirect('error');
     }
 
     public function show(): View
@@ -72,7 +57,7 @@ class HomeController extends Controller
         if ($User->id === Auth::user()->id) {
             return view('update_user', compact('User'));
         } else {
-            return view('error');
+            return view('nope');
         }
     }
 
@@ -102,7 +87,7 @@ class HomeController extends Controller
 
             return redirect('user');
         } else {
-            return redirect('error');
+            return redirect('nope');
         }
     }
 
@@ -123,7 +108,7 @@ class HomeController extends Controller
 
             return redirect('homepage');
         } else {
-            return redirect('error');
+            return redirect('nope');
         }
     }
 }

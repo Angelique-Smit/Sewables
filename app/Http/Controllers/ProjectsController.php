@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\project;
+use App\Models\project; // Preserve the capitalization of project
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
@@ -24,7 +24,7 @@ class ProjectsController extends Controller
         return view('projects.create');
     }
 
-    public function store(Request $request): View
+    public function store(Request $request): RedirectResponse
     {
         // login = Data sent to the database
         // !login = Data sent to the empty void of darkness never to be seen again
@@ -46,9 +46,16 @@ class ProjectsController extends Controller
             $project->explanation = $request->input('explanation');
             $project->save();
 
-            return view('projects');
+            return redirect()->back()->with([
+                'message' => 'Project Submitted',
+                'status' => 'Success',
+            ]);
         } else {
-            return view ('error');
+            // Error message
+            return redirect()->back()->with([
+                'message' => 'Something went wrong! Check your info and try again!',
+                'status' => 'Error',
+            ]);
         }
     }
 
@@ -58,11 +65,11 @@ class ProjectsController extends Controller
         if ($project->user_id === Auth::user()->id) {
         return view('update', compact('project'));
         } else {
-            return view ('projects');
+            return view('nope');
         }
     }
 
-    public function edit(Request $request, $id): View
+    public function edit(Request $request, $id): RedirectResponse
     {
         //Haalt het project op
         $project = project::find($id);
@@ -82,45 +89,26 @@ class ProjectsController extends Controller
             $project->description = $request->input('description');
             $project->explanation = $request->input('explanation');
             $project->update();
-            return view('projects');
+            return redirect('projects');
         } else {
-            return view('error');
+            return redirect('nope');
         }
     }
 
-    public function delete(Request $request, $id): View
+    public function delete(Request $request, $id): RedirectResponse
     {
         $project = project::find($id);
-        $post_check = Auth::user()->id;
-        $posts_checked = project::where('users_id', 'like', '%' . $post_check . '%')->get();
 
-        if ($project->user_id === Auth::user()->id && $posts_checked->count() >= 5) {
-                $project->title = $request->input('title');
-                $project->picture_url = $request->input('picture_url');
-                $project->description = $request->input('description');
-                $project->explanation = $request->input('explanation');
-                $project->delete();
-                return view('projects');
+        if ($project->user_id === Auth::user()->id) {
+        $project->title = $request->input('title');
+        $project->picture_url = $request->input('picture_url');
+        $project->description = $request->input('description');
+        $project->explanation = $request->input('explanation');
+        $project->delete();
+        return redirect('projects');
         } else {
-            return view('error');
+        return redirect('nope');
         }
-    }
-
-    public function search(Request $request): View
-    {
-        $request->validate([
-            'search_query' => 'required'
-        ]);
-
-        $search_query = $request->input('search_query');
-           if ($search_query) {
-               $search_result = project::where('title', 'like', '%' . request('search') . '%')->
-               orWhere('description', 'like', '%' . request('search') . '%')->get();
-
-               return view('list', ['search_result' => $search_result]);
-           }else{
-               return view('error');
-           }
     }
 
 }
