@@ -58,7 +58,7 @@ class ProjectsController extends Controller
         if ($project->user_id === Auth::user()->id) {
         return view('update', compact('project'));
         } else {
-            return view ('projects');
+            return view ('error');
         }
     }
 
@@ -82,7 +82,7 @@ class ProjectsController extends Controller
             $project->description = $request->input('description');
             $project->explanation = $request->input('explanation');
             $project->update();
-            return view('projects');
+            return view('projects', compact('project'));
         } else {
             return view('error');
         }
