@@ -26,8 +26,7 @@
 
         <section>
             <table>
-
-                @foreach($projects as $project)
+                @foreach($project as $project)
                     <tr>
                         <td>Project_id</td>
                         <td>User_id</td>

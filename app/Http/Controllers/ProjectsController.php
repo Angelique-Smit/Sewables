@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\project; // Preserve the capitalization of project
+use App\Models\project;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
@@ -14,9 +14,9 @@ class ProjectsController extends Controller
 {
     public function index(): View
     {
-        $projects = project::all();
+        $project = project::all();
 
-        return view('projects', ['projects' => $projects]);
+        return view('projects', ['project' => $project]);
     }
 
     public function create(): View
