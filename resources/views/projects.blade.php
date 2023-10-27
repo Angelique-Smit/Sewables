@@ -4,6 +4,7 @@
     <main>
         <form method="post" action="{{ route('ProjectsController.store') }}" autocomplete="on">
             @csrf
+            @method('POST')
             <label class="form_label" for="title"> Project title </label> <br>
             <input type="text" id="title" name="title"> <br>
 
@@ -18,6 +19,46 @@
 
             <input type="submit" value="Submit">
         </form>
+
+        <br>
+        <br>
+        <br>
+
+        <section>
+            <table>
+
+                @foreach($projects as $project)
+                    <tr>
+                        <td>Project_id</td>
+                        <td>User_id</td>
+                        <td>Title</td>
+                        <td>Picture URL</td>
+                        <td>Description</td>
+                        <td>Explanation</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>{{ $project->id }}</td>
+                        <td>{{ $project->users_id}}</td>
+                        <td>{{ $project->title }}</td>
+                        <td>{{ $project->picture_url }}</td>
+                        <td>{{ $project->description }}</td>
+                        <td>{{ $project->explanation }}</td>
+                        <td> <a href="{{ route('ProjectsController.update', $project->id)  }}">Edit</a> </td>
+                        <td> <form method="POST" action="{{ route('ProjectsController.delete', [$project->id]) }}">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                    <br>
+                    <br>
+                    <br>
+                @endforeach
+            </table>
+        </section>
     </main>
 @endsection
 
