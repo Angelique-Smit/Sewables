@@ -14,9 +14,13 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
+<<<<<<< HEAD
+Route::get('/', [App\Http\Controllers\HomepageController::class, 'index'])->name('homepage');
+=======
 Route::get('/', [App\Http\Controllers\Routing::class, 'homepage'])->name('homepage');
 Route::get('/homepage', [App\Http\Controllers\Routing::class, 'homepage'])->name('homepage');
 Route::get('/nope', [App\Http\Controllers\Routing::class, 'nope'])->name('nope');
+>>>>>>> parent of 6deb4e9 (aswan help)
 Route::get('/projects', [App\Http\Controllers\ProjectsController::class, 'index'])->name('projects');
 
 
@@ -24,12 +28,11 @@ Route::get('/projects', [App\Http\Controllers\ProjectsController::class, 'index'
 
 Auth::routes();
 
-//login
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-//Projects
 Route::get('/ProjectsController.create', [App\Http\Controllers\ProjectsController::class, 'create'])->name('ProjectsController.create');
 Route::post('/ProjectsController.store', [App\Http\Controllers\ProjectsController::class, 'store'])->name('ProjectsController.store');
+<<<<<<< HEAD
+=======
 Route::get('/ProjectsController.show', [App\Http\Controllers\ProjectsController::class, 'show'])->name('ProjectsController.show');
 
 Route::get('/ProjectsController.update/{id}', [App\Http\Controllers\ProjectsController::class, 'update'])->name('ProjectsController.update');
@@ -48,5 +51,6 @@ Route::delete('/HomeController.delete/{id}', [App\Http\Controllers\HomeControlle
 
 
 
+>>>>>>> parent of 6deb4e9 (aswan help)
 
 

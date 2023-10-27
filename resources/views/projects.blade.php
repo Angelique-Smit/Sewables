@@ -4,7 +4,6 @@
     <main>
         <form method="post" action="{{ route('ProjectsController.store') }}" autocomplete="on">
             @csrf
-            @method('POST')
             <label class="form_label" for="title"> Project title </label> <br>
             <input type="text" id="title" name="title"> <br>
 
@@ -19,6 +18,10 @@
 
             <input type="submit" value="Submit">
         </form>
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> parent of 6deb4e9 (aswan help)
 
         <br>
         <br>
@@ -26,7 +29,12 @@
 
         <section>
             <table>
-                @foreach($project as $project)
+<<<<<<< HEAD
+                @foreach($project as $projects)
+=======
+
+                @foreach($projects as $project)
+>>>>>>> parent of 6deb4e9 (aswan help)
                     <tr>
                         <td>Project_id</td>
                         <td>User_id</td>
@@ -58,6 +66,8 @@
                 @endforeach
             </table>
         </section>
+=======
+>>>>>>> parent of 6cf6f19 (Large commit see description)
     </main>
 @endsection
 
