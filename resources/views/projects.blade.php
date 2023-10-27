@@ -29,12 +29,7 @@
 
         <section>
             <table>
-<<<<<<< HEAD
                 @foreach($project as $projects)
-=======
-
-                @foreach($projects as $project)
->>>>>>> parent of 6deb4e9 (aswan help)
                     <tr>
                         <td>Project_id</td>
                         <td>User_id</td>

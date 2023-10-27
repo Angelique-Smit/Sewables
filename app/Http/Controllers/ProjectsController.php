@@ -40,44 +40,19 @@ class ProjectsController extends Controller
                 'status' => 'Success',
             ]);
         } else {
-<<<<<<< HEAD
+
             // Handle the case where the user is not authenticated
             return redirect()->back()->with([
                 'message' => 'User not authenticated',
-=======
-            // Error message
-            return redirect()->back()->with([
-                'message' => 'Something went wrong! Check your info and try again!',
->>>>>>> parent of 6deb4e9 (aswan help)
-                'status' => 'Error',
+                'status' => 'Error'
             ]);
         }
     }
 
-    public function show(string $id)
-    {
-<<<<<<< HEAD
-        // You can implement the code to show a project by its ID here
-    }
-
-    public function edit(string $id)
-    {
-        // You can implement the code to edit a project here
-    }
-
-    public function update(Request $request, string $id)
-    {
-        // You can implement the code to update a project here
-    }
-
-    public function destroy(string $id)
-    {
-        // You can implement the code to delete a project here
-    }
-=======
+    public function update () {
         $project = project::find($id);
         if ($project->user_id === Auth::user()->id) {
-        return view('update', compact('project'));
+            return view('update', compact('project'));
         } else {
             return view('nope');
         }
@@ -124,6 +99,4 @@ class ProjectsController extends Controller
         return redirect('nope');
         }
     }
-
->>>>>>> parent of 6deb4e9 (aswan help)
 }
