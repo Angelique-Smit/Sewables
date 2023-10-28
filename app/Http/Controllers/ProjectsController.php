@@ -2,18 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\project; // Preserve the capitalization of project
+use App\Models\project;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 use Illuminate\Support\Facades\Auth;
+use function Laravel\Prompts\error;
 
 class ProjectsController extends Controller
 {
     public function index(): View
     {
         $projects = project::all();
-
+        dd($projects);
         return view('projects', ['projects', $projects]);
     }
 
@@ -22,7 +23,7 @@ class ProjectsController extends Controller
         return view('projects.create');
     }
 
-    public function store(Request $request): RedirectResponse
+    public function store(Request $request): View
     {
         // Check if the user is authenticated before accessing their ID
         if (Auth::check()) {
@@ -35,21 +36,14 @@ class ProjectsController extends Controller
             $project->explanation = $request->input('explanation');
             $project->save();
 
-            return redirect()->back()->with([
-                'message' => 'Project Submitted',
-                'status' => 'Success',
-            ]);
+            return view('projects');
         } else {
-
-            // Handle the case where the user is not authenticated
-            return redirect()->back()->with([
-                'message' => 'User not authenticated',
-                'status' => 'Error'
-            ]);
+            return view ('nope');
         }
     }
 
-    public function update () {
+    public function update ($id): View
+    {
         $project = project::find($id);
         if ($project->user_id === Auth::user()->id) {
             return view('update', compact('project'));

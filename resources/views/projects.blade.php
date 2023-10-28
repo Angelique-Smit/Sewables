@@ -18,18 +18,13 @@
 
             <input type="submit" value="Submit">
         </form>
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> parent of 6deb4e9 (aswan help)
-
         <br>
         <br>
         <br>
 
         <section>
             <table>
-                @foreach($project as $projects)
+                @foreach($projects as $project)
                     <tr>
                         <td>Project_id</td>
                         <td>User_id</td>
@@ -61,8 +56,6 @@
                 @endforeach
             </table>
         </section>
-=======
->>>>>>> parent of 6cf6f19 (Large commit see description)
     </main>
 @endsection
 

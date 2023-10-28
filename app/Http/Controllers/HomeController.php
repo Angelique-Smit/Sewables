@@ -3,6 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\View\View;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\RedirectResponse;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
+
 
 class HomeController extends Controller
 {
@@ -25,8 +31,6 @@ class HomeController extends Controller
     {
         return view('home');
     }
-<<<<<<< HEAD
-=======
 
     public function admin(): View
     {
@@ -107,5 +111,4 @@ class HomeController extends Controller
             return redirect('nope');
         }
     }
->>>>>>> parent of 6deb4e9 (aswan help)
 }
