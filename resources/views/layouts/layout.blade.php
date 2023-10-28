@@ -12,6 +12,8 @@
             <div class="link"> <img src="" alt="Sewables logo" id="sewables_logo_nav"> </div>
             <div class="link"> <a class="link" href="./"> Home </a> </div>
             <div class="link"> <a class="link" href="./projects"> Projects </a> </div>
+            <div class="link"> <a class="link" href="./admin"> Admin Page </a> </div>
+            <div class="link"> <a class="link" href="./user"> User Page </a> </div>
 
             <div class="dropdown">
                 <button class="dropbtn"> <img src="{{ asset('pic/hamburger-menu.svg') }}" alt="Hamburger menu picture" id="hamburger_icon"></button>
@@ -40,6 +42,15 @@
     </header>
 
     <main>
+        <section>
+            @if (Session::has('message'))
+                <div>{{ Session::get('message')  }}</div>
+            @endif
+            @if (Session::has('status'))
+                <div>{{ Session::get('status')  }}</div>
+            @endif
+        </section>
+
         @yield('content')
     </main>
 
@@ -56,8 +67,6 @@
             </div>
         </section>
     </footer>
-
-
 </body>
 </html>
 

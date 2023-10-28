@@ -23,6 +23,18 @@
         <br>
 
         <section>
+            <form action="{{ route('ProjectsController.search') }}" autocomplete="on" method="get">
+                @csrf
+                @method('GET')
+                <label class="form_label" for="search_query"> Search for a project </label> <br>
+                <input type="text" id="search_query" name="search_query"> <br>
+                <br> <br> <br>
+                <input type="submit" value="Submit">
+            </form>
+            <br> <br> <br>
+        </section>
+
+        <section>
             <table>
                 @foreach($projects as $project)
                     <tr>

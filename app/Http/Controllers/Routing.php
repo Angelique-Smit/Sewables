@@ -16,4 +16,5 @@ class Routing extends Controller
     {
         return redirect('nope');
     }
+
 }

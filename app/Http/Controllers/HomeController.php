@@ -32,23 +32,15 @@ class HomeController extends Controller
         return view('home');
     }
 
-    public function admin(): View
+    public function show(): View
     {
-        $user_id = Auth::user()->id;
-        $user = User::find($user_id);
-
-        if (Auth::check() && $user->admin) {
-            return view('admin');
+        if (Auth::check()) {
+            $user_id = Auth::user()->id;
+            $User = User::find($user_id);
+            return view('user', compact('User'));
         } else {
             return view('nope');
         }
-    }
-
-    public function show(): View
-    {
-        $user_id = Auth::user()->id;
-        $user_info = User::find($user_id);
-        return view('user', ['User' => $user_info]);
     }
 
     public function edit($id): View
@@ -110,5 +102,34 @@ class HomeController extends Controller
         } else {
             return redirect('nope');
         }
+    }
+
+    public function admin(): View
+    {
+        $user_id = Auth::user()->id;
+        $user = User::find($user_id);
+
+        if (Auth::check() && $user->admin) {
+            $User = User::all();
+            return view('admin', compact('User'));
+        } else {
+            return view('nope');
+        }
+    }
+
+    public function setAdmin($id): RedirectResponse
+    {
+        $get_current_user = Auth::user()->id;
+        $current_user= User::find($get_current_user);
+
+        if (Auth::check()&& $current_user->admin) {
+            $user = User::find($id);
+            $admin = $user->admin;
+            $user->admin = !$admin;
+            $user->update();
+
+            return redirect('admin');
+        }
+        return redirect('nope');
     }
 }
